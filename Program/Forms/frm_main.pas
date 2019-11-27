@@ -1186,7 +1186,7 @@ end;
 procedure TfrmMain.SetDefaultBooksLanguage;
 begin
   // Загрузка языка по умолчанию для книг
-  if (Settings.DefaultBooksLanguage <> '') or (Settings.DefaultBooksLanguage <> '-') then
+  if (Settings.DefaultBooksLanguage <> '') and (Settings.DefaultBooksLanguage <> '-') then
   begin
     FillLanguageSelector(cbLangSelectA);
     FillLanguageSelector(cbLangSelectS);
