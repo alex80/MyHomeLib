@@ -192,6 +192,8 @@ type
     FSelectedIsChecked: Boolean;
     FIgnoreAbsentArchives: Boolean;
 
+    FDefaultBooksLanguage: string;
+
     // SORT_SECTION
     FEnableSort: Boolean;
     FImportDir: string;
@@ -376,6 +378,7 @@ type
     property ForceConvertToFBD: Boolean read FForceConvertToFBD write FForceConvertToFBD;
     property OverwriteFB2Info: Boolean read FOverwriteFB2Info write FOverwriteFB2Info;
     property IgnoreAbsentArchives: Boolean read FIgnoreAbsentArchives write FIgnoreAbsentArchives;
+    property DefaultBooksLanguage: string read FDefaultBooksLanguage write FDefaultBooksLanguage;
 
     property FullTextSearch: Boolean read FFullTextSearch write FFullTextSearch;
 
@@ -810,7 +813,7 @@ begin
     FFBDBookHeaderTemplate := iniFile.ReadString(BEHAVIOR_SECTION, 'BookHeaderTemplate', '%t');
     FSelectedIsChecked := iniFile.ReadBool(BEHAVIOR_SECTION, 'SelectedIsChecked', True);
     FIgnoreAbsentArchives := iniFile.ReadBool(BEHAVIOR_SECTION, 'IgnoreAbsentArchives', True);
-
+    FDefaultBooksLanguage := iniFile.ReadString(BEHAVIOR_SECTION, 'DefaultBooksLanguage', '');
 
     //
     // FILE_SORT_SECTION
@@ -980,6 +983,7 @@ begin
     iniFile.WriteString(BEHAVIOR_SECTION, 'BookHeaderTemplate', FFBDBookHeaderTemplate);
     iniFile.WriteBool(BEHAVIOR_SECTION, 'SelectedIsChecked', FSelectedIsChecked);
     iniFile.WriteBool(BEHAVIOR_SECTION, 'IgnoreAbsentArchives', FIgnoreAbsentArchives);
+    iniFile.WriteString(BEHAVIOR_SECTION, 'DefaultBooksLanguage', FDefaultBooksLanguage);
 
     //
     // FILE_SORT_SECTION

@@ -1456,6 +1456,13 @@ object frmSettings: TfrmSettings
           Caption = #1064#1072#1073#1083#1086#1085' '#1079#1072#1075#1086#1083#1086#1074#1082#1072' '#1082#1085#1080#1075#1080':'
           WordWrap = True
         end
+        object Label25: TLabel
+          Left = 9
+          Top = 273
+          Width = 149
+          Height = 13
+          Caption = #1071#1079#1099#1082' '#1087#1086' '#1091#1084#1086#1083#1095#1072#1085#1080#1102' '#1076#1083#1103' '#1082#1085#1080#1075
+        end
         object cbShowSubGenreBooks: TCheckBox
           AlignWithMargins = True
           Left = 9
@@ -1604,6 +1611,13 @@ object frmSettings: TfrmSettings
           Caption = #1048#1075#1085#1086#1088#1080#1088#1086#1074#1072#1090#1100' '#1086#1090#1089#1091#1090#1089#1090#1074#1091#1102#1097#1080#1077' '#1072#1088#1093#1080#1074#1099
           TabOrder = 11
           OnClick = cbIgnoreArchivesClick
+        end
+        object edDefaultBooksLanguage: TEdit
+          Left = 164
+          Top = 270
+          Width = 29
+          Height = 21
+          TabOrder = 12
         end
       end
     end

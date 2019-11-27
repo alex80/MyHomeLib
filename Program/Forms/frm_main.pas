@@ -955,6 +955,9 @@ type
     property ShowStatusProgress: Boolean read GetShowStatusProgress write SetShowStatusProgress;
     property StatusMessage: string read GetStatusMessage write SetStatusMessage;
     property StatusProgress: Integer read GetStatusProgress write SetStatusProgress;
+
+    procedure SetDefaultBooksLanguage;
+    procedure FillLanguageSelector(const LangSelector: TComboBox);
   end;
 
 var
@@ -1177,6 +1180,19 @@ begin
 
   finally
     Columns.Free;
+  end;
+end;
+
+procedure TfrmMain.SetDefaultBooksLanguage;
+begin
+  // Загрузка языка по умолчанию для книг
+  if (Settings.DefaultBooksLanguage <> '') or (Settings.DefaultBooksLanguage <> '-') then
+  begin
+    FillLanguageSelector(cbLangSelectA);
+    FillLanguageSelector(cbLangSelectS);
+    FillLanguageSelector(cbLangSelectG);
+    FillLanguageSelector(cbLangSelectF);
+    FLangSelected := True;
   end;
 end;
 
@@ -2678,6 +2694,9 @@ begin
 
   frmSplash.lblState.Caption := rstrMainLoadingCollection;
   frmSplash.lblState.Update;
+
+  // Загрузка языка по умолчанию для книг
+  SetDefaultBooksLanguage;
 
   InitCollection;
 
@@ -4310,6 +4329,12 @@ begin
   finally
     Screen.Cursor := SavedCursor;
   end;
+end;
+
+procedure TfrmMain.FillLanguageSelector(const LangSelector: TComboBox);
+begin
+    LangSelector.Items.Add(Settings.DefaultBooksLanguage);
+    LangSelector.ItemIndex := 1;
 end;
 
 procedure TfrmMain.miCopyAuthorClick(Sender: TObject);
