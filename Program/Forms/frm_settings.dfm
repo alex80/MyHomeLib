@@ -1456,13 +1456,6 @@ object frmSettings: TfrmSettings
           Caption = #1064#1072#1073#1083#1086#1085' '#1079#1072#1075#1086#1083#1086#1074#1082#1072' '#1082#1085#1080#1075#1080':'
           WordWrap = True
         end
-        object Label25: TLabel
-          Left = 9
-          Top = 273
-          Width = 149
-          Height = 13
-          Caption = #1071#1079#1099#1082' '#1087#1086' '#1091#1084#1086#1083#1095#1072#1085#1080#1102' '#1076#1083#1103' '#1082#1085#1080#1075
-        end
         object cbShowSubGenreBooks: TCheckBox
           AlignWithMargins = True
           Left = 9
@@ -1542,7 +1535,7 @@ object frmSettings: TfrmSettings
         object cbDeleteFiles: TCheckBox
           AlignWithMargins = True
           Left = 9
-          Top = 187
+          Top = 181
           Width = 429
           Height = 16
           Margins.Left = 9
@@ -1555,11 +1548,10 @@ object frmSettings: TfrmSettings
         object cbOverwriteFB2Info: TCheckBox
           AlignWithMargins = True
           Left = 9
-          Top = 165
+          Top = 159
           Width = 429
           Height = 16
           Margins.Left = 9
-          Margins.Top = 9
           Align = alTop
           Caption = #1055#1077#1088#1077#1079#1072#1087#1080#1089#1099#1074#1072#1090#1100' '#1079#1072#1075#1086#1083#1086#1074#1086#1082' fb2'
           TabOrder = 7
@@ -1588,11 +1580,10 @@ object frmSettings: TfrmSettings
         object cbSelectedIsChecked: TCheckBox
           AlignWithMargins = True
           Left = 9
-          Top = 243
+          Top = 225
           Width = 429
           Height = 16
           Margins.Left = 9
-          Margins.Top = 9
           Align = alTop
           Caption = #1054#1073#1088#1072#1073#1072#1090#1099#1074#1072#1090#1100' '#1074#1099#1076#1077#1083#1077#1085#1085#1099#1077'  '#1082#1072#1082' '#1086#1090#1084#1077#1095#1077#1085#1085#1099#1077' '
           TabOrder = 10
@@ -1602,21 +1593,24 @@ object frmSettings: TfrmSettings
         object cbIgnoreArchives: TCheckBox
           AlignWithMargins = True
           Left = 9
-          Top = 215
+          Top = 203
           Width = 429
           Height = 16
           Margins.Left = 9
-          Margins.Top = 9
           Align = alTop
           Caption = #1048#1075#1085#1086#1088#1080#1088#1086#1074#1072#1090#1100' '#1086#1090#1089#1091#1090#1089#1090#1074#1091#1102#1097#1080#1077' '#1072#1088#1093#1080#1074#1099
           TabOrder = 11
           OnClick = cbIgnoreArchivesClick
         end
-        object edDefaultBooksLanguage: TEdit
-          Left = 164
-          Top = 270
-          Width = 29
-          Height = 21
+        object cbSaveLastSelectedLanguage: TCheckBox
+          AlignWithMargins = True
+          Left = 9
+          Top = 247
+          Width = 429
+          Height = 16
+          Margins.Left = 9
+          Align = alTop
+          Caption = #1047#1072#1087#1086#1084#1080#1085#1072#1090#1100' '#1087#1086#1089#1083#1077#1076#1085#1080#1081' '#1074#1099#1073#1088#1072#1085#1085#1099#1081' '#1103#1079#1099#1082
           TabOrder = 12
         end
       end

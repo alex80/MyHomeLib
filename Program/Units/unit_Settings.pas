@@ -192,7 +192,12 @@ type
     FSelectedIsChecked: Boolean;
     FIgnoreAbsentArchives: Boolean;
 
-    FDefaultBooksLanguage: string;
+    // Настройки сохранения языка просмотра книг
+    FSaveLastSelectedLanguage: Boolean;
+    FLangAuthor: string;
+    FLangSeries: string;
+    FLangGenre: string;
+    FLangGroup: string;
 
     // SORT_SECTION
     FEnableSort: Boolean;
@@ -378,7 +383,12 @@ type
     property ForceConvertToFBD: Boolean read FForceConvertToFBD write FForceConvertToFBD;
     property OverwriteFB2Info: Boolean read FOverwriteFB2Info write FOverwriteFB2Info;
     property IgnoreAbsentArchives: Boolean read FIgnoreAbsentArchives write FIgnoreAbsentArchives;
-    property DefaultBooksLanguage: string read FDefaultBooksLanguage write FDefaultBooksLanguage;
+    // Настройки сохранения языка просмотра книг
+    property SaveLastSelectedLanguage: Boolean read FSaveLastSelectedLanguage write FSaveLastSelectedLanguage;
+    property LangAuthor: string read FLangAuthor write FLangAuthor;
+    property LangSeries: string read FLangSeries write FLangSeries;
+    property LangGenre: string read FLangGenre write FLangGenre;
+    property LangGroup: string read FLangGroup write FLangGroup;
 
     property FullTextSearch: Boolean read FFullTextSearch write FFullTextSearch;
 
@@ -813,7 +823,12 @@ begin
     FFBDBookHeaderTemplate := iniFile.ReadString(BEHAVIOR_SECTION, 'BookHeaderTemplate', '%t');
     FSelectedIsChecked := iniFile.ReadBool(BEHAVIOR_SECTION, 'SelectedIsChecked', True);
     FIgnoreAbsentArchives := iniFile.ReadBool(BEHAVIOR_SECTION, 'IgnoreAbsentArchives', True);
-    FDefaultBooksLanguage := iniFile.ReadString(BEHAVIOR_SECTION, 'DefaultBooksLanguage', '');
+
+    FSaveLastSelectedLanguage := iniFile.ReadBool(BEHAVIOR_SECTION, 'SaveLastSelectedLanguage', False);
+    FLangAuthor := iniFile.ReadString(BEHAVIOR_SECTION, 'LangAuthor', '-');
+    FLangSeries := iniFile.ReadString(BEHAVIOR_SECTION, 'LangSeries', '-');
+    FLangGenre := iniFile.ReadString(BEHAVIOR_SECTION, 'LangGenre', '-');
+    FLangGroup := iniFile.ReadString(BEHAVIOR_SECTION, 'LangGroup', '-');
 
     //
     // FILE_SORT_SECTION
@@ -983,7 +998,12 @@ begin
     iniFile.WriteString(BEHAVIOR_SECTION, 'BookHeaderTemplate', FFBDBookHeaderTemplate);
     iniFile.WriteBool(BEHAVIOR_SECTION, 'SelectedIsChecked', FSelectedIsChecked);
     iniFile.WriteBool(BEHAVIOR_SECTION, 'IgnoreAbsentArchives', FIgnoreAbsentArchives);
-    iniFile.WriteString(BEHAVIOR_SECTION, 'DefaultBooksLanguage', FDefaultBooksLanguage);
+
+    iniFile.WriteBool(BEHAVIOR_SECTION, 'SaveLastSelectedLanguage', FSaveLastSelectedLanguage);
+    iniFile.WriteString(BEHAVIOR_SECTION, 'LangAuthor', FLangAuthor);
+    iniFile.WriteString(BEHAVIOR_SECTION, 'LangSeries', FLangSeries);
+    iniFile.WriteString(BEHAVIOR_SECTION, 'LangGenre', FLangGenre);
+    iniFile.WriteString(BEHAVIOR_SECTION, 'LangGroup', FLangGroup);
 
     //
     // FILE_SORT_SECTION

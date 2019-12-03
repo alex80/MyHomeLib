@@ -202,8 +202,7 @@ type
     lbProxyType: TLabel;
     cbProxyType: TComboBox;
     cbIgnoreArchives: TCheckBox;
-    Label25: TLabel;
-    edDefaultBooksLanguage: TEdit;
+    cbSaveLastSelectedLanguage: TCheckBox;
 
     procedure SaveSettingsClick(Sender: TObject);
     procedure ShowHelpClick(Sender: TObject);
@@ -389,7 +388,7 @@ begin
   edTitleTemplate.Text := Settings.BookHeaderTemplate;
   cbSelectedIsChecked.Checked := Settings.SelectedIsChecked;
   cbIgnoreArchives.Checked := Settings.IgnoreAbsentArchives;
-  edDefaultBooksLanguage.Text := Settings.DefaultBooksLanguage;
+  cbSaveLastSelectedLanguage.Checked := Settings.SaveLastSelectedLanguage;
 
   //
   // Page 6 -  FileSort
@@ -511,7 +510,7 @@ begin
   Settings.AutoStartDwnld := cbAutoStartDwnld.Checked;
   Settings.SelectedIsChecked := cbSelectedIsChecked.Checked;
   Settings.IgnoreAbsentArchives := cbIgnoreArchives.Checked;
-  Settings.DefaultBooksLanguage := Trim(edDefaultBooksLanguage.Text);
+  Settings.SaveLastSelectedLanguage := cbSaveLastSelectedLanguage.Checked;
 
   // Page 6 -  FileSort
 

@@ -956,8 +956,9 @@ type
     property StatusMessage: string read GetStatusMessage write SetStatusMessage;
     property StatusProgress: Integer read GetStatusProgress write SetStatusProgress;
 
-    procedure SetDefaultBooksLanguage;
-    procedure FillLanguageSelector(const LangSelector: TComboBox);
+    procedure LoadLastSelectedLanguage;
+    procedure SaveLastSelectedLanguage;
+    procedure FillLanguageSelector(const LangSelector: TComboBox; Lang: string);
   end;
 
 var
@@ -1183,19 +1184,6 @@ begin
   end;
 end;
 
-procedure TfrmMain.SetDefaultBooksLanguage;
-begin
-  // Загрузка языка по умолчанию для книг
-  if (Settings.DefaultBooksLanguage <> '') and (Settings.DefaultBooksLanguage <> '-') then
-  begin
-    FillLanguageSelector(cbLangSelectA);
-    FillLanguageSelector(cbLangSelectS);
-    FillLanguageSelector(cbLangSelectG);
-    FillLanguageSelector(cbLangSelectF);
-    FLangSelected := True;
-  end;
-end;
-
 procedure TfrmMain.SaveColumns;
 var
   Columns: TColumns;
@@ -1240,6 +1228,24 @@ begin
       Columns.Save(SECTION_SR_FLAT);
   finally
     Columns.Free;
+  end;
+end;
+
+procedure TfrmMain.SaveLastSelectedLanguage;
+begin
+  if Settings.SaveLastSelectedLanguage then
+  begin
+    Settings.LangAuthor := cbLangSelectA.Text;
+    Settings.LangSeries := cbLangSelectS.Text;
+    Settings.LangGenre := cbLangSelectG.Text;
+    Settings.LangGroup := cbLangSelectF.Text;
+  end
+  else
+  begin
+    Settings.LangAuthor := '-';
+    Settings.LangSeries := '-';
+    Settings.LangGenre := '-';
+    Settings.LangGroup := '-';
   end;
 end;
 
@@ -2585,6 +2591,18 @@ begin
   end;
 end;
 
+procedure TfrmMain.LoadLastSelectedLanguage;
+begin
+  // Загрузка языка по умолчанию для книг
+  if Settings.SaveLastSelectedLanguage then
+  begin
+    FillLanguageSelector(cbLangSelectA, Settings.LangAuthor);
+    FillLanguageSelector(cbLangSelectS, Settings.LangSeries);
+    FillLanguageSelector(cbLangSelectG, Settings.LangGenre);
+    FillLanguageSelector(cbLangSelectF, Settings.LangGroup);
+  end;
+end;
+
 // ----------------------------------------------------------------------------
 //
 // События формы
@@ -2696,7 +2714,7 @@ begin
   frmSplash.lblState.Update;
 
   // Загрузка языка по умолчанию для книг
-  SetDefaultBooksLanguage;
+  LoadLastSelectedLanguage;
 
   InitCollection;
 
@@ -2744,6 +2762,7 @@ begin
 
   SavePositions;
   SaveMainFormSettings;
+  SaveLastSelectedLanguage;
   Settings.SaveSettings;
 
   FreeAndNil(FController);
@@ -4331,10 +4350,14 @@ begin
   end;
 end;
 
-procedure TfrmMain.FillLanguageSelector(const LangSelector: TComboBox);
+procedure TfrmMain.FillLanguageSelector(const LangSelector: TComboBox; Lang: string);
 begin
-    LangSelector.Items.Add(Settings.DefaultBooksLanguage);
+  if Lang <> '-' then
+  begin
+    LangSelector.Items.Add(Lang);
     LangSelector.ItemIndex := 1;
+    FLangSelected := True;
+  end;
 end;
 
 procedure TfrmMain.miCopyAuthorClick(Sender: TObject);
